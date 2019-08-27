@@ -29,7 +29,6 @@ namespace Game
         private void PlayPointGainedSound()
         {
             audioSource.PlayOneShot(audioClip);
-            Debug.Log("PouCling!! Catho");
         }
     }
 }

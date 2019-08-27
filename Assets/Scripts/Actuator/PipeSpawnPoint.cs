@@ -6,14 +6,15 @@ namespace Game
 {
     public class PipeSpawnPoint :MonoBehaviour
     {
-        [SerializeField] private GameObject pipePrefab;
         [SerializeField] private float pipeSpawningDelay = 1;
 
         private GameController gameController;
+        private PrefabFactory prefabFactory;
 
         private void Awake()
         {
             gameController = Finder.GameController;
+            prefabFactory = Finder.PrefabFactory;
         }
 
         private void OnEnable()
@@ -28,9 +29,9 @@ namespace Game
             while (isActiveAndEnabled)
             {
                 yield return new WaitForSeconds(pipeSpawningDelay);
-                
-                if(gameController.GameState == GameState.Playing)
-                    Instantiate(pipePrefab, transform.position, Quaternion.identity);
+
+                if (gameController.GameState == GameState.Playing)
+                    prefabFactory.CreatePipePair(transform.position, Quaternion.identity, null);
             }
         }
     }
