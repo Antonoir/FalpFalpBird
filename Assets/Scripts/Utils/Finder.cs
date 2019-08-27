@@ -7,6 +7,7 @@ namespace Game
         private const string GAME_CONTROLLER_TAG = "GameController";
 
         private static GameController gameController;
+        private static PrefabFactory prefabFactory;
         private static PlayerDeathEventChannel playerDeathEventChannel;
         private static PointGainedEventChannel pointGainedEventChannel;
 
@@ -39,6 +40,16 @@ namespace Game
                     pointGainedEventChannel = GameObject.FindWithTag(GAME_CONTROLLER_TAG)
                         .GetComponent<PointGainedEventChannel>();
                 return pointGainedEventChannel;
+            }
+        }
+        
+        public static PrefabFactory PrefabFactory
+        {
+            get
+            {
+                if (prefabFactory == null)
+                    prefabFactory = GameObject.FindWithTag(GAME_CONTROLLER_TAG).GetComponent<PrefabFactory>();
+                return prefabFactory;
             }
         }
     }
